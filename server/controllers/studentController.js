@@ -1,22 +1,23 @@
 const Student = require("../models/Student");  //// importing the schema from model/student..
 const mongoose = require("mongoose");
+const session = require('express-session');
 
-// // get default page
-exports.default = async (req, res) => {
-  const locals = {
-    title: "Default Page",
-    description: "Welcome to the default page",
-  };
+// get default page
+// exports.default = async (req, res) => {
+//   const locals = {
+//     title: "Default Page",
+//     description: "Welcome to the default page",
+//   };
 
-  res.render("default", {
-    layout: 'layouts/defaultLay', 
-    locals
-  });
-};
+//   res.render("default", {
+//     layout: 'layouts/defaultLay', 
+//     locals
+//   });
+// };
 
 /**
  * GET /
- * Homepage
+ * record page
  */
 exports.homepage = async (req, res) => {
   const locals = {
@@ -98,7 +99,7 @@ exports.postStudent = async (req, res) => {
 
   try {
     await Student.create(newStudent);
-    res.redirect("/dash");
+    res.redirect("/students/dash");
   } catch (error) {
     console.log(error);
   }
@@ -162,7 +163,7 @@ exports.editPost = async (req, res) => {
       details: req.body.details,
       updatedAt: Date.now(),
     });
-    await res.redirect(`/edit/${req.params.id}`);
+    await res.redirect(`/students/edit/${req.params.id}`);
 
     console.log("redirected");
   } catch (error) {
@@ -177,7 +178,7 @@ exports.editPost = async (req, res) => {
 exports.deleteStudent = async (req, res) => {
   try {
     await Student.deleteOne({ _id: req.params.id });
-    res.redirect("/dash");
+    res.redirect("/students/dash");
   } catch (error) {
     console.log(error);
   }
@@ -212,4 +213,5 @@ exports.searchStudents = async (req, res) => {
     console.log(error);
   }
 };
+
 

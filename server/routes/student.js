@@ -5,7 +5,7 @@ const requirelogin = require('../../authMdlwr')
 
 
 /**  Student Routes */
-router.get('/',studentController.default); 
+// router.get('/dash',studentController.default); 
 
 router.get('/dash', studentController.homepage);
 router.get('/about', studentController.about);
@@ -15,6 +15,7 @@ router.get('/view/:id',studentController.view);
 router.get('/edit/:id',requirelogin, studentController.edit);
 router.put('/edit/:id', studentController.editPost);
 router.delete('/edit/:id',requirelogin,studentController.deleteStudent);
+// router.post('/login', studentController.login);
 
 router.post('/search', studentController.searchStudents);
 

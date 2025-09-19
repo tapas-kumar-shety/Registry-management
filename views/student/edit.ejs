@@ -11,7 +11,7 @@
   </div>
 </div>
 
-<form action="/edit/<%= student._id %>?_method=PUT" method="POST">
+<form action="/students/edit/<%= student._id %>?_method=PUT" method="POST">
 
   <div class="row form-group mb-4 darrk">
       <div class="col ">
@@ -65,7 +65,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-              <form action="/edit/<%= student._id %>?_method=DELETE" method="POST" class="position-relative">
+              <form action="/students/edit/<%= student._id %>?_method=DELETE" method="POST" class="position-relative">
                   <button type="submit" class="btn btn-danger">Yes, Remove Student</button>
               </form>
           </div>

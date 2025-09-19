@@ -1,0 +1,47 @@
+version: "3.8"
+
+### if you dont have a pre-built image, uncomment below to build from Dockerfile
+# services:
+#   app:
+#     build: .
+#     container_name: node_app
+#     ports:
+#       - "3000:3000"
+
+services:
+  app:
+    # image: web-app:latest  # Use the pre-built image
+    image: web-app:2nd  # Use the pre-built image
+    
+    container_name: node_app
+    ports:
+      - "5000:5000"
+    environment:
+       - MONGODB_URI=mongodb://admin:admin123@mongo_db:27017/librarydb?authSource=admin
+       - SECRET=your_very_secret_key
+    depends_on:
+      - mongo
+
+### If you want to use the official MongoDB image, uncomment below
+  # mongo:
+  #   image: mongo:7.0
+  #   container_name: mongo_db
+  #   ports:
+  #     - "27017:27017"
+  #   environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=admin
+    #   - MONGO_INITDB_ROOT_PASSWORD=admin123
+    #   - MONGO_INITDB_DATABASE=librarydb
+  #   volumes:                  # Uncomment to use initialization script if u have not used it in custom image
+  #     - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+    
+
+  mongo:
+    image: tapaskumarshety/mongo-server  # Use your custom MongoDB image
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    # environment:
+    #   - MONGO_INITDB_ROOT_USERNAME=admin
+    #   - MONGO_INITDB_ROOT_PASSWORD=admin123
+    #   - MONGO_INITDB_DATABASE=librarydb
