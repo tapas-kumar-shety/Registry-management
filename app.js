@@ -43,50 +43,13 @@ app.set('view engine', 'ejs');
 app.use('/students', require('./server/routes/student'))
 app.use('/', require('./server/routes/home'))
 app.use('/user', require('./server/routes/user'))
-// app.use('/addAdmin', require('./server/routes/user'))
 
-// app.get('/login', (req, res) => {
-//     const errorMessage = req.session.errorMessage || '';  
-//     req.session.errorMessage = null;  
-//     res.render('login', { errorMessage });
-// });
-
-
-// app.get('/addAdmin',requirelogin,(req,res)=>{
-//     res.render('addAdmin')
-// })
 
 // Handle 404
 app.get('*', (req, res) => {
     res.status(404).render('404');
 });
 
-///// loign post 
-// app.post('/login', async (req, res) => {
-//     const { userName, password } = req.body;
-//     const foundUser = await User.findAndValidate(userName, password);
-
-//     if (foundUser) {
-//         req.session.user_id = foundUser._id;
-//         req.session.userName = foundUser.userName;
-//         res.redirect('/dash');
-//     } else {
-//         req.session.errorMessage = "Invalid username or password";
-//         res.redirect('/login');
-//     }
-// });
-
-
-
- // signup post 
-//  app.post('/addAdmin',async(req,res)=>{      
-//     const {userName,password} = req.body      
-//   const user = new User ({userName,password})
-//   await user.save()
-//   req.session.user_id = user._id;
-//   req.session.userName = user.userName;
-//   res.redirect('/')
-// })
 
 
 
