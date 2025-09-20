@@ -53,19 +53,6 @@ app.get('*', (req, res) => {
 
 
 
- app.get('/logout', (req, res) => {
-    req.session.destroy();  
-    res.redirect('/');  
-});
-
-//// LOGOUT POST
-app.post('/logout', (req, res) => {
-    req.session.destroy(); 
-    res.redirect('/'); 
-});
-
-
-
 app.listen(port, () => {
     console.log(`App is listening on port http://localhost:${port}`)
 });
